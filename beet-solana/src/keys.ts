@@ -16,7 +16,7 @@ const uint8Array32 = fixedSizeUint8Array(32)
  * ## Using PublicKey Directly
  *
  * ```ts
- * import { publicKey } from '@metaplex-foundation/beet-solana'
+ * import { publicKey } from '@convergence-rfq/beet-solana'
  *
  * const generatedKey  = Keypair.generate().publicKey
  * const buf = Buffer.alloc(publicKey.byteSize)
@@ -27,7 +27,7 @@ const uint8Array32 = fixedSizeUint8Array(32)
  * ## PublicKey as part of a Struct Configuration
  *
  * ```ts
- * import { publicKey } from '@metaplex-foundation/beet-solana'
+ * import { publicKey } from '@convergence-rfq/beet-solana'
  *
  * type InstructionArgs = {
  *   authority: web3.PublicKey

@@ -1,10 +1,11 @@
-# @metaplex-foundation/beet
+# @convergence-rfq/beet
 
 Strict borsh compatible de/serializer.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [Features](#features)
 - [Fixed Size vs. Dynamic Types](#fixed-size-vs-dynamic-types)
@@ -27,11 +28,10 @@ Strict borsh compatible de/serializer.
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Features
 
 - fully composable, i.e. `coption(array(utf8String))` is handled
-correctly
+  correctly
 - structs can be nested and composed
 - pre-computes `byteSize` of any fixed size type, no matter how deeply nested or composed it is
 - converts non-fixed types to their fixed versions simply by providing a value or serialized
@@ -39,7 +39,7 @@ correctly
 - fixed size and _fixable_ structs expose identical serialize/deserialize API and perform
   conversions under the hood when needed
 - logs struct configs including byte sizes as well as de/serialization tasks for easy
-diagnostics
+  diagnostics
 
 ```
 beet:debug struct GameStruct {
@@ -59,7 +59,7 @@ beet:trace   255,  22, 255, 255, 255
 beet:trace ] +0ms
 ```
 
-## Fixed Size vs. Dynamic Types 
+## Fixed Size vs. Dynamic Types
 
 Beet is optimized for _fixed_ types as this allows logging detailed diagnostics about the
 structure of data that it is processing as well as avoiding Buffer resizes.
@@ -68,7 +68,7 @@ Only _beets_ that have _fixed_ in the name are of fixed size, all others are _fi
 which expose `toFixedFromData` and `toFixedFromValue` methods to convert to a _fixed beet_ from
 serialized data or a value respectively.
 
-Beet provides the `FixableBeetStruct` to de/serialize args that have non-fixed size fields. 
+Beet provides the `FixableBeetStruct` to de/serialize args that have non-fixed size fields.
 
 Thus beet implements the entire [borsh spec](https://borsh.io/), however if you want a library
 that processes dynamic types directly use one of the alternatives, i.e. [borsh-js](https://github.com/near/borsh-js).
@@ -82,7 +82,7 @@ Please find the [API docs here](https://metaplex-foundation.github.io/beet/docs/
 ### Single Fixed Struct Configuration
 
 ```ts
-import { BeetStruct, i32, u16, u8 } from '@metaplex-foundation/beet'
+import { BeetStruct, i32, u16, u8 } from '@convergence-rfq/beet'
 
 class Result {
   constructor(
@@ -106,7 +106,7 @@ class Result {
 ### Single Fixable Struct Configuration
 
 ```ts
-import { FixableBeetStruct, i32, u16, u8, array } from '@metaplex-foundation/beet'
+import { FixableBeetStruct, i32, u16, u8, array } from '@convergence-rfq/beet'
 
 class Result {
   constructor(
@@ -132,7 +132,7 @@ class Result {
 **NOTE:** uses `Result` struct from the above example for the `results` field of `Trader`
 
 ```ts
-import { BeetStruct, fixedSizeUtf8String } from '@metaplex-foundation/beet'
+import { BeetStruct, fixedSizeUtf8String } from '@convergence-rfq/beet'
 class Trader {
   constructor(
     readonly name: string,
@@ -150,7 +150,7 @@ class Trader {
     'Trader'
   )
 }
-  
+
 const trader = new Trader('bob ', new Results(20, 1200, -455), 22)
 const [buf] = Trader.struct.serialize(trader)
 const [deserializedTrader] = Trader.struct.deserialize(buf)
@@ -162,8 +162,8 @@ const [deserializedTrader] = Trader.struct.deserialize(buf)
 
 ```ts
 import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as beet from '@convergence-rfq/beet'
+import * as beetSolana from '@convergence-rfq/beet-solana'
 
 type InstructionArgs = {
   instructionDiscriminator: number[]
@@ -187,7 +187,7 @@ const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
 #### Fixed Size
 
 ```ts
-import { u8 } from '@metaplex-foundation/beet'
+import { u8 } from '@convergence-rfq/beet'
 const n = 1
 const buf = Buffer.alloc(u8.byteSize)
 u8.write(buf, 0, n)
@@ -197,8 +197,8 @@ u8.read(buf, 0) // === 1
 #### Dynamic Size
 
 ```ts
-import { u8, array } from '@metaplex-foundation/beet'
-const xs = [ 1, 2 ]
+import { u8, array } from '@convergence-rfq/beet'
+const xs = [1, 2]
 const beet = array(u8)
 const fixedBeet = beet.toFixedFromValue(xs)
 const buf = Buffer.alloc(fixedBeet.byteSize)
@@ -208,7 +208,7 @@ fixedBeet.read(buf, 0) // === [ 1, 2 ]
 
 ### Using Beet Composites Directly
 
-**NOTE:** use `Result` struct from the above example to wrap in a _Composite_ type 
+**NOTE:** use `Result` struct from the above example to wrap in a _Composite_ type
 
 #### Option
 
@@ -232,7 +232,11 @@ beet.read(buf, 0) // same  as result
 
 ```ts
 const resultArray: Beet<Array<Result>> = uniformFixedSizeArray(Result.struct, 3)
-const results =[ new Result(20, 1200, -455), new Result(3, 999, 0), new Result(30, 100, -3) ]
+const results = [
+  new Result(20, 1200, -455),
+  new Result(3, 999, 0),
+  new Result(30, 100, -3),
+]
 const buf = Buffer.alloc(resultArray.byteSize)
 beet.write(buf, 0, results)
 beet.read(buf, 0) // same  as results
@@ -242,7 +246,11 @@ beet.read(buf, 0) // same  as results
 
 ```ts
 const resultArray: Beet<Array<Result>> = array(Result.struct)
-const results =[ new Result(20, 1200, -455), new Result(3, 999, 0), new Result(30, 100, -3) ]
+const results = [
+  new Result(20, 1200, -455),
+  new Result(3, 999, 0),
+  new Result(30, 100, -3),
+]
 const fixedBeet = resultsArray.toFixedFromValue(results)
 
 const buf = Buffer.alloc(fixedBeet.byteSize)

@@ -1,4 +1,4 @@
-# @metaplex-foundation/beet-solana
+# @convergence-rfq/beet-solana
 
 Solana specific extension for beet, the borsh compatible de/serializer
 
@@ -14,7 +14,7 @@ them which allow to filter by account data size and content.
 1. Create a GPA Builder via `const gpaBuilder = GpaBuilder.fromStruct(programId, accountStruct)`
 2. add filters via `gpaBuilder.dataSize`, `gpaBuilder.addFilter` or `gpaBuilder.addInnerFilter`
 3. execute `gpaBuilder.run(connection)` which will return all accounts matching the specified
-filters
+   filters
 
 ### Examples
 
@@ -71,10 +71,7 @@ export class Trader {
   )
 }
 
-const gpaBuilder = GpaBuilder.fromStruct<Trader>(
-  PROGRAM_ID,
-  Trader.struct
-)
+const gpaBuilder = GpaBuilder.fromStruct<Trader>(PROGRAM_ID, Trader.struct)
 
 const results = {
   win: 3,
@@ -90,10 +87,7 @@ const accounts = await gpaBuilder.addFilter('results', results).run()
 _Using `Trader` struct from above_
 
 ```ts
-const gpaBuilder = GpaBuilder.fromStruct<Trader>(
-  PROGRAM_ID,
-  Trader.struct
-)
+const gpaBuilder = GpaBuilder.fromStruct<Trader>(PROGRAM_ID, Trader.struct)
 
 const account = await gpaBuilder
   .addInnerFilter('results.totalWin', 8)
@@ -111,9 +105,9 @@ They can either be used directly or as part of a struct.
 #### Using PublicKey Directly
 
 ```ts
-import { publicKey } from '@metaplex-foundation/beet-solana'
+import { publicKey } from '@convergence-rfq/beet-solana'
 
-const generatedKey  = Keypair.generate().publicKey
+const generatedKey = Keypair.generate().publicKey
 const buf = Buffer.alloc(publicKey.byteSize)
 beet.write(buf, 0, generatedKey)
 beet.read(buf, 0) // same as generatedKey
@@ -123,17 +117,15 @@ beet.read(buf, 0) // same as generatedKey
 
 ```ts
 import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as beet from '@convergence-rfq/beet'
+import * as beetSolana from '@convergence-rfq/beet-solana'
 
 type InstructionArgs = {
   authority: web3.PublicKey
 }
 
 const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
-  [
-    ['authority', beetSolana.publicKey]
-  ],
+  [['authority', beetSolana.publicKey]],
   'InstructionArgs'
 )
 ```
