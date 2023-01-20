@@ -1,7 +1,7 @@
 import test from 'tape'
 import spok from 'spok'
-import { BeetStruct } from '@metaplex-foundation/beet'
-import { u8 } from '@metaplex-foundation/beet'
+import { BeetStruct } from '@convergence-rfq/beet'
+import { u8 } from '@convergence-rfq/beet'
 import {
   IntAndString,
   PROGRAM_ID,

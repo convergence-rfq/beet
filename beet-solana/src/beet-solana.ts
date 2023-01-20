@@ -1,4 +1,4 @@
-import { SupportedTypeDefinition } from '@metaplex-foundation/beet'
+import { SupportedTypeDefinition } from '@convergence-rfq/beet'
 import { KeysExports, keysTypeMap, KeysTypeMapKey } from './keys'
 
 export * from './keys'

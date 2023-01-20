@@ -5,7 +5,7 @@ import {
   FixableBeetStruct,
   FixedSizeBeet,
   isFixedSizeBeet,
-} from '@metaplex-foundation/beet'
+} from '@convergence-rfq/beet'
 import {
   Connection,
   GetProgramAccountsConfig,

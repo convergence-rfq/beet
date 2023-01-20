@@ -1,10 +1,14 @@
 {
-  "name": "@metaplex-foundation/beet",
-  "version": "0.7.1",
+  "name": "@convergence-rfq/beet",
+  "version": "0.7.2",
   "description": "Strict borsh compatible de/serializer",
   "sideEffects": false,
   "main": "dist/cjs/src/beet.js",
   "types": "dist/types/src/beet.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "scripts": {
     "check:publish-ready": "yarn build && yarn test",
     "preversion": "yarn check:publish-ready",

@@ -3,8 +3,8 @@ import {
   FixedSizeBeet,
   fixedSizeUint8Array,
   SupportedTypeDefinition,
-} from '@metaplex-foundation/beet'
-const BEET_SOLANA_PACKAGE = '@metaplex-foundation/beet-solana'
+} from '@convergence-rfq/beet'
+const BEET_SOLANA_PACKAGE = '@convergence-rfq/beet-solana'
 const SOLANA_WEB3_PACKAGE = '@solana/web3.js'
 
 const uint8Array32 = fixedSizeUint8Array(32)

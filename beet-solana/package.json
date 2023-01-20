@@ -1,10 +1,14 @@
 {
-  "name": "@metaplex-foundation/beet-solana",
-  "version": "0.4.0",
+  "name": "@convergence-rfq/beet-solana",
+  "version": "0.4.1",
   "description": "Solana specific extension for beet, the borsh compatible de/serializer",
   "sideEffects": false,
   "main": "dist/cjs/src/beet-solana.js",
   "types": "dist/types/src/beet-solana.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "scripts": {
     "check:publish-ready": "yarn build && yarn test",
     "preversion": "yarn check:publish-ready",
@@ -29,7 +33,7 @@
     "dist/types/src/*"
   ],
   "dependencies": {
-    "@metaplex-foundation/beet": ">=0.1.0",
+    "@convergence-rfq/beet": "=0.7.2",
     "@solana/web3.js": "^1.56.2",
     "bs58": "^5.0.0",
     "debug": "^4.3.4"

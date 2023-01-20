@@ -6,7 +6,7 @@ import {
   u16,
   u8,
   utf8String,
-} from '@metaplex-foundation/beet'
+} from '@convergence-rfq/beet'
 import {
   GetProgramAccountsConfig,
   GetProgramAccountsFilter,
