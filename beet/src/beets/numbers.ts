@@ -277,15 +277,15 @@ export type NumbersTypeMap = Record<
 // prettier-ignore
 export const numbersTypeMap: NumbersTypeMap = {
   // <= 32-bit numbers and boolean
+  bool : { beet: 'bool', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'boolean' },
   u8   : { beet: 'u8',   isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   u16  : { beet: 'u16',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   u32  : { beet: 'u32',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i8   : { beet: 'i8',   isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i16  : { beet: 'i16',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i32  : { beet: 'i32',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
-  bool : { beet: 'bool', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'boolean' },
-  f64  : { beet: 'f64', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'boolean' },
   // Big Number, they use, the 'bignum' type which is defined in this package
+  f64  : { beet: 'f64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u64  : { beet: 'u64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u128 : { beet: 'u128', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u256 : { beet: 'u256', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
