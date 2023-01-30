@@ -1,6 +1,6 @@
 {
   "name": "@convergence-rfq/beet-solana",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Solana specific extension for beet, the borsh compatible de/serializer",
   "sideEffects": false,
   "main": "dist/cjs/src/beet-solana.js",
@@ -33,7 +33,7 @@
     "dist/types/src/*"
   ],
   "dependencies": {
-    "@convergence-rfq/beet": "=0.7.6",
+    "@convergence-rfq/beet": "=0.7.7",
     "@solana/web3.js": "^1.56.2",
     "bs58": "^5.0.0",
     "debug": "^4.3.4"
