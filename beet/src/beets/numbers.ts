@@ -167,6 +167,22 @@ export const i32: FixedSizeBeet<number> = {
   description: 'i32',
 }
 
+/**
+ * De/Serializer 64-bit signed doubles aka `f64`.
+ *
+ * @category beet/primitive
+ */
+export const f64: FixedSizeBeet<number> = {
+  write: function (buf: Buffer, offset: number, value: number) {
+    buf.writeDoubleLE(value, offset)
+  },
+  read: function (buf: Buffer, offset: number): number {
+    return buf.readDoubleLE(offset)
+  },
+  byteSize: 8,
+  description: 'f64',
+}
+
 function signedLargeBeet(byteSize: number, description: string) {
   const bitSize = byteSize * 8
   return {
@@ -186,13 +202,6 @@ function signedLargeBeet(byteSize: number, description: string) {
   }
 }
 
-/**
- * De/Serializer for 64-bit signed float aka `f64` which serializes to a JavaScript
- * _BigNum_ via {@link https://github.com/indutny/bn.js | BN}.
- *
- * @category beet/primitive
- */
-export const f64: FixedSizeBeet<bignum> = signedLargeBeet(8, 'f64')
 /**
  * De/Serializer for 64-bit signed integers aka `i64` which serializes to a JavaScript
  * _BigNum_ via {@link https://github.com/indutny/bn.js | BN}.
@@ -291,8 +300,8 @@ export const numbersTypeMap: NumbersTypeMap = {
   i8   : { beet: 'i8',   isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i16  : { beet: 'i16',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i32  : { beet: 'i32',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
+  f64  : { beet: 'f64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   // Big Number, they use, the 'bignum' type which is defined in this package
-  f64  : { beet: 'f64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u64  : { beet: 'u64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u128 : { beet: 'u128', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u256 : { beet: 'u256', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },

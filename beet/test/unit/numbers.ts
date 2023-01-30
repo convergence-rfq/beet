@@ -109,13 +109,8 @@ test('numbers: round trip u64', (t) => {
 
 test('numbers: round trip f64', (t) => {
   const cases = [
-    0,
-    0xff,
-    0xffff,
-    0xffffffff,
-    new BN(1),
-    new BN(-3.141592653589793238462643383279502884197),
-    new BN(3.141592653589793238462643383279502884197),
+    0, 0xff, 0xffff, 0xffffffff, -3.141592653589793238462643383279502884197,
+    3.141592653589793238462643383279502884197,
   ]
   const offsets = [0, f64.byteSize, 2 * f64.byteSize]
   const beet = f64
