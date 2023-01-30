@@ -284,8 +284,8 @@ export const numbersTypeMap: NumbersTypeMap = {
   i8   : { beet: 'i8',   isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i16  : { beet: 'i16',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   i32  : { beet: 'i32',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
+  f64  : { beet: 'f64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'number'  },
   // Big Number, they use, the 'bignum' type which is defined in this package
-  f64  : { beet: 'f64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u64  : { beet: 'u64',  isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u128 : { beet: 'u128', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
   u256 : { beet: 'u256', isFixable: false, sourcePack: BEET_PACKAGE, ts: 'bignum', pack: BEET_PACKAGE  },
