@@ -174,10 +174,15 @@ export const i32: FixedSizeBeet<number> = {
  */
 export const f64: FixedSizeBeet<number> = {
   write: function (buf: Buffer, offset: number, value: number) {
-    buf.writeDoubleLE(value, offset)
+    const float64Array = new Float64Array(1)
+    float64Array[0] = value
+    const float64ArrayBuf = Buffer.from(float64Array.buffer)
+    float64ArrayBuf.copy(buf, offset, 0, this.byteSize)
   },
   read: function (buf: Buffer, offset: number): number {
-    return buf.readDoubleLE(offset)
+    const slice = buf.slice(offset, offset + this.byteSize)
+    const float64Array = new Float64Array(slice.buffer, offset, 1)
+    return float64Array[0]
   },
   byteSize: 8,
   description: 'f64',
